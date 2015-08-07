@@ -32,7 +32,7 @@ def fib(n):
     if n > 2:
         return fib(n-2) + fib(n-1)
     else:
-        return n
+        return 1
         
 def fibonacci(n):
     num = 1
@@ -533,7 +533,41 @@ def shift(l):
         
 shift(pos)
     
+#%% 25) 1000-digit Fibonacci number
+#The Fibonacci sequence is defined by the recurrence relation: Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
+#The 12th term, F12, is the first term to contain three digits.
+#What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
+
+def dfib(n): # Djiksta's algorithm
+    if n == 0 or n == 1:
+        return n
+    elif n%2 == 1:
+        return dfib(n//2)**2 + dfib(n//2+1)**2
+    else:
+        return dfib(n//2)*(2*dfib(n//2-1) + dfib(n//2))
+        
+list_1000 = [(x, len(str(dfib(x)))) for x in list(range(0, 10001, 1000))]
+list_100 = [(x, len(str(dfib(x)))) for x in list(range(4000, 5001, 100))]
+list_10 = [(x, len(str(dfib(x)))) for x in list(range(4700, 4801, 10))]
+list_1 = [(x, len(str(dfib(x)))) for x in list(range(4780, 4791, 1))]
+
+#%% 26) Reciprocal cycles
+#A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
+#1/2	= 	0.5
+#1/3	= 	0.(3)
+#1/4	= 	0.25
+#1/5	= 	0.2
+#1/6	= 	0.1(6)
+#1/7	= 	0.(142857)
+#1/8	= 	0.125
+#1/9	= 	0.(1)
+#1/10	= 	0.1
+#Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be seen that 1/7 has a 6-digit recurring cycle.
+#Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
+
+
+
+fracs = [(x, 1/x) for x in denoms]
+
+
 #%%
-
-
-
