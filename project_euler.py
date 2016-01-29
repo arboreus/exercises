@@ -314,7 +314,7 @@ nums = """
 
 str(sum([int(x) for x in nums]))[:10]
 
-##%% 14) Longest Collatz sequence
+#%% 14) Longest Collatz sequence
 #The following iterative sequence is defined for the set of positive integers:
 #n → n/2 (n is even)
 #n → 3n + 1 (n is odd)
@@ -565,9 +565,18 @@ list_1 = [(x, len(str(dfib(x)))) for x in list(range(4780, 4791, 1))]
 #Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be seen that 1/7 has a 6-digit recurring cycle.
 #Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
+denoms_terminating = [x*y for x in [2**x for x in range(10)] for y in [5**x for x in range(5)]]
+denoms_terminating = [x for x in sorted(list(set(denoms_terminating))) if 1 < x < 1000]
+denoms = [x for x in range(2, 1000)]
 
+#%%
+for number in reversed(denoms_terminating):
+    denoms = [x // number if x % number == 0 else x for x in denoms]
+    denoms = [x for x in sorted(list(set(denoms)))]
 
-fracs = [(x, 1/x) for x in denoms]
+#%%
+
+fracs = [1/x for x in denoms]
 
 
 #%%
